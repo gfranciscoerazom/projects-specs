@@ -17,6 +17,8 @@ class ProjectsTable
             ->columns([
                 TextColumn::make('name'),
                 TextColumn::make('audience'),
+                TextColumn::make('status')
+                    ->badge(),
                 TextColumn::make('description')
                     ->wrap()
                     ->lineClamp(2)

@@ -13,6 +13,8 @@ class ProjectInfolist
             ->components([
                 TextEntry::make('name'),
                 TextEntry::make('audience'),
+                TextEntry::make('status')
+                    ->badge(),
                 TextEntry::make('description')
                     ->markdown()
                     ->columnSpanFull(),

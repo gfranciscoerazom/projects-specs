@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Enums\Project\ProjectStatus;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['name', 'description', 'audience', 'conventions'])]
+#[Fillable(['name', 'description', 'audience', 'status', 'conventions'])]
 class Project extends Model
 {
     use HasFactory;
@@ -22,6 +23,7 @@ class Project extends Model
     {
         return [
             'id' => 'integer',
+            'status' => ProjectStatus::class,
         ];
     }
 

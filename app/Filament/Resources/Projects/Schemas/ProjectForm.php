@@ -2,7 +2,9 @@
 
 namespace App\Filament\Resources\Projects\Schemas;
 
+use App\Enums\Project\ProjectStatus;
 use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
@@ -15,6 +17,9 @@ class ProjectForm
                 TextInput::make('name')
                     ->required(),
                 TextInput::make('audience')
+                    ->required(),
+                Select::make('status')
+                    ->options(ProjectStatus::class)
                     ->required(),
                 MarkdownEditor::make('description')
                     ->required()

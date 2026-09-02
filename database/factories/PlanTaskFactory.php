@@ -16,7 +16,7 @@ class PlanTaskFactory extends Factory
         return [
             'task' => fake()->word(),
             'description' => fake()->text(),
-            'status' => fake()->randomElement(PlanTaskStatus::cases()),
+            'status' => fake()->randomElement(PlanTaskStatus::class),
             'sort' => fake()->numberBetween(0, 10000),
             'feature_id' => Feature::factory(),
         ];

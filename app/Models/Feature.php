@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Enums\Feature\FeaturePriority;
+use App\Enums\Feature\FeatureStatus;
+use App\Enums\Feature\FeatureType;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -23,6 +26,9 @@ class Feature extends Model
         return [
             'id' => 'integer',
             'project_id' => 'integer',
+            'status' => FeatureStatus::class,
+            'priority' => FeaturePriority::class,
+            'type' => FeatureType::class,
         ];
     }
 

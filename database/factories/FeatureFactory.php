@@ -19,9 +19,9 @@ class FeatureFactory extends Factory
             'name' => fake()->name(),
             'description' => fake()->text(),
             'plan' => fake()->text(),
-            'status' => fake()->randomElement(FeatureStatus::cases()),
-            'priority' => fake()->randomElement(FeaturePriority::cases()),
-            'type' => fake()->randomElement(FeatureType::cases()),
+            'status' => fake()->randomElement(FeatureStatus::class),
+            'priority' => fake()->randomElement(FeaturePriority::class),
+            'type' => fake()->randomElement(FeatureType::class),
             'sort' => fake()->numberBetween(0, 10000),
             'project_id' => Project::factory(),
         ];

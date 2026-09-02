@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\PlanTask\PlanTaskStatus;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -22,6 +23,7 @@ class PlanTask extends Model
         return [
             'id' => 'integer',
             'feature_id' => 'integer',
+            'status' => PlanTaskStatus::class,
         ];
     }
 

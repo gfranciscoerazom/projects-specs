@@ -13,20 +13,27 @@ class ProjectForm
     public static function configure(Schema $schema): Schema
     {
         return $schema
-            ->components([
-                TextInput::make('name')
-                    ->required(),
-                TextInput::make('audience')
-                    ->required(),
-                Select::make('status')
-                    ->options(ProjectStatus::class)
-                    ->required(),
-                MarkdownEditor::make('description')
-                    ->required()
-                    ->columnSpanFull(),
-                MarkdownEditor::make('conventions')
-                    ->required()
-                    ->columnSpanFull(),
-            ]);
+            ->components(self::getForm());
+    }
+
+    public static function getForm(): array
+    {
+        return [
+            TextInput::make('name')
+                ->required(),
+            TextInput::make('audience')
+                ->required(),
+            Select::make('status')
+                ->options(ProjectStatus::class)
+                ->default(ProjectStatus::ACTIVE)
+                ->selectablePlaceholder(false)
+                ->required(),
+            MarkdownEditor::make('description')
+                ->required()
+                ->columnSpanFull(),
+            MarkdownEditor::make('conventions')
+                ->required()
+                ->columnSpanFull(),
+        ];
     }
 }

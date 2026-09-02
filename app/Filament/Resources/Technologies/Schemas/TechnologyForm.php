@@ -11,12 +11,17 @@ class TechnologyForm
     public static function configure(Schema $schema): Schema
     {
         return $schema
-            ->components([
-                TextInput::make('name')
-                    ->required(),
-                MarkdownEditor::make('conventions')
-                    ->required()
-                    ->columnSpanFull(),
-            ]);
+            ->components(self::getForm());
+    }
+
+    public static function getForm(): array
+    {
+        return [
+            TextInput::make('name')
+                ->required(),
+            MarkdownEditor::make('conventions')
+                ->required()
+                ->columnSpanFull(),
+        ];
     }
 }

@@ -4,8 +4,8 @@ namespace App\Filament\Resources\Projects\Schemas;
 
 use App\Enums\Project\ProjectStatus;
 use Filament\Forms\Components\MarkdownEditor;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\ToggleButtons;
 use Filament\Schemas\Schema;
 
 class ProjectForm
@@ -23,10 +23,10 @@ class ProjectForm
                 ->required(),
             TextInput::make('audience')
                 ->required(),
-            Select::make('status')
+            ToggleButtons::make('status')
                 ->options(ProjectStatus::class)
                 ->default(ProjectStatus::ACTIVE)
-                ->selectablePlaceholder(false)
+                ->inline()
                 ->required(),
             MarkdownEditor::make('description')
                 ->required()

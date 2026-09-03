@@ -21,6 +21,10 @@ class ProjectInfolist
                 TextEntry::make('conventions')
                     ->markdown()
                     ->columnSpanFull(),
+                TextEntry::make('technologies.name')
+                    ->label('Technologies')
+                    ->badge()
+                    ->columnSpanFull(),
                 TextEntry::make('created_at')
                     ->dateTime()
                     ->placeholder('-'),

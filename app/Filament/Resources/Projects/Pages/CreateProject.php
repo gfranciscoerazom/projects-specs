@@ -19,7 +19,9 @@ class CreateProject extends CreateRecord
                 ->label('Fill with factory data')
                 ->icon(Heroicon::Star)
                 ->visible(app()->isLocal())
-                ->action(fn () => $this->form->fill(Project::factory()->definition())),
+                ->action(
+                    fn () => $this->form->fill(Project::factory()->definition())
+                ),
         ];
     }
 }

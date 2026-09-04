@@ -2,11 +2,13 @@
 
 namespace App\Filament\Resources\Projects\Tables;
 
+use App\Enums\Project\ProjectStatus;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class ProjectsTable
@@ -24,6 +26,11 @@ class ProjectsTable
                     ->lineClamp(2)
                     ->markdown()
                     ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('technologies.name')
+                    ->label('Technologies')
+                    ->badge()
+                    ->wrap()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('conventions')
                     ->wrap()
                     ->lineClamp(2)
@@ -37,7 +44,16 @@ class ProjectsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                SelectFilter::make('status')
+                    ->searchable()
+                    ->multiple()
+                    ->preload()
+                    ->options(ProjectStatus::class),
+                SelectFilter::make('technologies')
+                    ->relationship('technologies', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->multiple(),
             ])
             ->recordActions([
                 ViewAction::make(),

@@ -2,17 +2,19 @@
 
 namespace App\Filament\Resources\Projects\Schemas;
 
+use App\Enums\Feature\FeaturePriority;
+use App\Enums\Feature\FeatureStatus;
+use App\Enums\Feature\FeatureType;
 use App\Enums\Project\ProjectStatus;
 use App\Filament\Resources\Technologies\Schemas\TechnologyForm;
 use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Schemas\Components\Wizard;
 use Filament\Schemas\Components\Wizard\Step;
 use Filament\Schemas\Schema;
-use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\HtmlString;
 
 class ProjectForm
 {
@@ -56,17 +58,48 @@ class ProjectForm
                             ->createOptionForm(TechnologyForm::getForm())
                             ->columnSpanFull(),
                     ]),
-            ])
-                ->submitAction(new HtmlString(Blade::render(<<<'BLADE'
-                     <x-filament::button
-                        type="submit"
-                        size="sm"
-                    >
-                        Submit
-                    </x-filament::button>
-                BLADE)))
-                ->persistStepInQueryString()
-                ->columnSpanFull(),
+                Step::make('Features')
+                    ->description('Specify the features for the project.')
+                    ->components([
+                        Repeater::make('features')
+                            ->relationship()
+                            ->components(self::getFeaturesForm())
+                            ->orderColumn('sort')
+                            ->reorderableWithButtons()
+                            ->collapsible()
+                            ->cloneable()
+                            ->live()
+                            ->itemLabel(fn (array $state): ?string => $state['name'] ?? null)
+                            ->columnSpanFull(),
+                    ]),
+            ]),
+        ];
+    }
+
+    public static function getFeaturesForm(): array
+    {
+        return [
+            TextInput::make('name')
+                ->required(),
+            MarkdownEditor::make('description')
+                ->required(),
+            MarkdownEditor::make('plan')
+                ->required(),
+            ToggleButtons::make('status')
+                ->options(FeatureStatus::class)
+                ->default(FeatureStatus::PENDING)
+                ->inline()
+                ->required(),
+            ToggleButtons::make('priority')
+                ->options(FeaturePriority::class)
+                ->default(FeaturePriority::LOW)
+                ->inline()
+                ->required(),
+            ToggleButtons::make('type')
+                ->options(FeatureType::class)
+                ->default(FeatureType::FEATURE)
+                ->inline()
+                ->required(),
         ];
     }
 }

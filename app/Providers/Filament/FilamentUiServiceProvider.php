@@ -8,15 +8,17 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Field;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Schemas\Components\Component;
+use Filament\Schemas\Components\Wizard;
 use Filament\Schemas\Schema;
 use Filament\Support\Enums\Width;
 use Filament\Tables\Columns\Column;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\HtmlString;
 use Illuminate\Support\ServiceProvider;
 
 class FilamentUiServiceProvider extends ServiceProvider
@@ -137,5 +139,20 @@ class FilamentUiServiceProvider extends ServiceProvider
                     ['undo', 'redo'],
                 ]);
         });
+
+        // make wizards persist the current step in the query string and have a submit button
+        Wizard::configureUsing(
+            fn (Wizard $wizard) => $wizard
+                ->persistStepInQueryString()
+                ->columnSpanFull()
+                ->submitAction(new HtmlString(Blade::render(<<<'BLADE'
+                     <x-filament::button
+                        type="submit"
+                        size="sm"
+                    >
+                        Submit
+                    </x-filament::button>
+                BLADE)))
+        );
     }
 }

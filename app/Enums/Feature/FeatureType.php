@@ -33,7 +33,7 @@ enum FeatureType: string implements HasColor, HasIcon, HasLabel
     public function getIcon(): string|\BackedEnum|Htmlable|null
     {
         return match ($this) {
-            self::FEATURE => 'heroicon-o-lightning-bolt',
+            self::FEATURE => 'heroicon-o-light-bulb',
             self::BUG => 'heroicon-o-bug-ant',
             self::IMPROVEMENT => 'heroicon-o-arrow-trending-up',
         };

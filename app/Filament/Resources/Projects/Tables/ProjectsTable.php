@@ -55,6 +55,7 @@ class ProjectsTable
                     ->preload()
                     ->multiple(),
             ])
+            ->persistFiltersInSession()
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),

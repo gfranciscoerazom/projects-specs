@@ -63,6 +63,7 @@ class AdminPanelProvider extends PanelProvider
             ->emailChangeVerification()
             ->unsavedChangesAlerts(app()->isProduction())
             ->databaseTransactions()
+            ->sidebarCollapsibleOnDesktop()
             // ->strictAuthorization()
             ->profile(EditProfile::class, isSimple: false);
     }

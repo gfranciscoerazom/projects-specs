@@ -6,6 +6,7 @@ use Filament\Actions\Action;
 use Filament\Actions\CreateAction;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Field;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Notifications\Notification;
@@ -153,6 +154,15 @@ class FilamentUiServiceProvider extends ServiceProvider
                         Submit
                     </x-filament::button>
                 BLADE)))
+        );
+
+        // make repeaters collapsible, cloneable, and have a minimum of 1 item
+        Repeater::configureUsing(
+            fn (Repeater $repeater) => $repeater
+                ->collapsible()
+                ->cloneable()
+                ->defaultItems(1)
+                ->columnSpanFull()
         );
     }
 }

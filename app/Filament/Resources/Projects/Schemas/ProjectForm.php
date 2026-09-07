@@ -68,17 +68,13 @@ class ProjectForm
                     ->description('Specify the features for the project.')
                     ->components([
                         Repeater::make('features')
-                            ->defaultItems(1)
                             ->relationship()
                             ->components(self::getFeaturesForm())
                             ->orderColumn('sort')
                             ->reorderableWithButtons()
-                            ->collapsible()
-                            ->cloneable()
                             ->live()
                             ->itemLabel(fn (array $state): ?string => $state['name'] ?? null)
-                            ->minItems(1)
-                            ->columnSpanFull(),
+                            ->minItems(1),
                     ]),
             ]),
         ];
@@ -120,11 +116,8 @@ class ProjectForm
                                 ->relationship()
                                 ->components(self::getAcceptanceCriteriaForm())
                                 ->reorderableWithButtons()
-                                ->collapsible()
-                                ->cloneable()
                                 ->live()
-                                ->itemLabel(fn (array $state): ?string => $state['name'] ?? null)
-                                ->columnSpanFull(),
+                                ->itemLabel(fn (array $state): ?string => $state['name'] ?? null),
                         ]),
                     Tab::make('User Stories')
                         ->icon(Heroicon::User)
@@ -134,11 +127,8 @@ class ProjectForm
                                 ->components(self::getUserStoriesForm())
                                 ->reorderable()
                                 ->reorderableWithButtons()
-                                ->collapsible()
-                                ->cloneable()
                                 ->live()
-                                ->itemLabel(fn (array $state): ?string => $state['name'] ?? null)
-                                ->columnSpanFull(),
+                                ->itemLabel(fn (array $state): ?string => $state['name'] ?? null),
                         ]),
                     Tab::make('Plan Tasks')
                         ->icon(Heroicon::CheckBadge)
@@ -150,11 +140,8 @@ class ProjectForm
                                 ->components(self::getPlanTasksForm())
                                 ->orderColumn('sort')
                                 ->reorderableWithButtons()
-                                ->collapsible()
-                                ->cloneable()
                                 ->live()
-                                ->itemLabel(fn (array $state): ?string => $state['task'] ?? null)
-                                ->columnSpanFull(),
+                                ->itemLabel(fn (array $state): ?string => $state['task'] ?? null),
                         ]),
                 ]),
         ];

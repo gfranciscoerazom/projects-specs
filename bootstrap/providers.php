@@ -1,8 +1,12 @@
 <?php
 
+use App\Providers\AppServiceProvider;
+use App\Providers\Filament\AdminPanelProvider;
+use App\Providers\FilamentUiServiceProvider;
+
 return [
-    App\Providers\AppServiceProvider::class,
-    App\Providers\FilamentUiServiceProvider::class,
-    App\Providers\Filament\AdminPanelProvider::class,
+    AppServiceProvider::class,
+    FilamentUiServiceProvider::class,
+    AdminPanelProvider::class,
     App\Providers\Filament\FilamentUiServiceProvider::class,
 ];

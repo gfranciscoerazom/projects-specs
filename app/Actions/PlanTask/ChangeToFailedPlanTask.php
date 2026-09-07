@@ -3,7 +3,6 @@
 namespace App\Actions\PlanTask;
 
 use App\Enums\PlanTask\PlanTaskStatus;
-use App\Models\Feature;
 use App\Models\PlanTask;
 
 class ChangeToFailedPlanTask

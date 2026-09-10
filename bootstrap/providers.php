@@ -2,11 +2,12 @@
 
 use App\Providers\AppServiceProvider;
 use App\Providers\Filament\AdminPanelProvider;
-use App\Providers\FilamentUiServiceProvider;
+use App\Providers\Filament\BasePanelProvider;
+use App\Providers\Filament\FilamentUiServiceProvider;
 
 return [
     AppServiceProvider::class,
-    FilamentUiServiceProvider::class,
     AdminPanelProvider::class,
-    App\Providers\Filament\FilamentUiServiceProvider::class,
+    BasePanelProvider::class,
+    FilamentUiServiceProvider::class,
 ];

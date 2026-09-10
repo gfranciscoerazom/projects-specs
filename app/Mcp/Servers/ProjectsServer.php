@@ -3,6 +3,7 @@
 namespace App\Mcp\Servers;
 
 use App\Mcp\Tools\InfoProjectsTool;
+use App\Mcp\Tools\ListProjectsTool;
 use Laravel\Mcp\Server;
 use Laravel\Mcp\Server\Attributes\Instructions;
 use Laravel\Mcp\Server\Attributes\Name;
@@ -15,6 +16,7 @@ class ProjectsServer extends Server
 {
     protected array $tools = [
         InfoProjectsTool::class,
+        ListProjectsTool::class,
     ];
 
     protected array $resources = [

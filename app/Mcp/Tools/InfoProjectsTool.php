@@ -19,24 +19,26 @@ class InfoProjectsTool extends Tool
     /**
      * Handle the tool request.
      */
-    public function handle(Request $request, Project $project): ResponseFactory
+    public function handle(Request $request): ResponseFactory
     {
         $validated = $request->validate([
-            'name' => 'required|string',
+            'id' => 'required|integer',
         ], [
-            'name.required' => 'The name field is required.',
-            'name.string' => 'The name field must be a string.',
+            'id.required' => 'The id field is required.',
+            'id.integer' => 'The id field must be an integer.',
         ]);
 
-        $requestedProject = $project->where('name', $validated['name'])->firstOrFail();
+        // $project = Project::where('name', $validated['name'])->firstOrFail();
+        $project = Project::find($validated['id']);
 
         return Response::structured([
-            'name' => $requestedProject->name,
-            'description' => $requestedProject->description,
-            'audience' => $requestedProject->audience,
-            'conventions' => $requestedProject->conventions,
-            'technologies' => $requestedProject->technologies()->get(['id', 'name', 'conventions']),
-            'features' => $requestedProject
+            'id' => $project->id,
+            'name' => $project->name,
+            'description' => $project->description,
+            'audience' => $project->audience,
+            'conventions' => $project->conventions,
+            'technologies' => $project->technologies()->get(['id', 'name', 'conventions']),
+            'features' => $project
                 ->features()
                 ->with([
                     'acceptanceCriterias:id,feature_id,name,description,is_met',
@@ -64,9 +66,9 @@ class InfoProjectsTool extends Tool
     public function schema(JsonSchema $schema): array
     {
         return [
-            'name' => $schema
-                ->string()
-                ->description('The name of the project.')
+            'id' => $schema
+                ->integer()
+                ->description('The ID of the project.')
                 ->required(),
         ];
     }
@@ -79,6 +81,10 @@ class InfoProjectsTool extends Tool
     public function outputSchema(JsonSchema $schema): array
     {
         return [
+            'id' => $schema
+                ->integer()
+                ->description('The ID of the project.')
+                ->required(),
             'name' => $schema
                 ->string()
                 ->description('The name of the project.')

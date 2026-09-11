@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mcp\Tools;
+namespace App\Mcp\Tools\AcceptanceCriteria;
 
 use App\Models\Feature;
 use Illuminate\Contracts\JsonSchema\JsonSchema;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mcp\Tools;
+namespace App\Mcp\Tools\Projects;
 
 use App\Models\Project;
 use Illuminate\Contracts\JsonSchema\JsonSchema;

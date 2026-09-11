@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mcp\Tools;
+namespace App\Mcp\Tools\AcceptanceCriteria;
 
 use App\Actions\AcceptanceCriteria\MarkAsIsMetAcceptanceCriteria;
 use App\Models\AcceptanceCriteria;
@@ -27,7 +27,9 @@ class MarkAsIsMetAcceptanceCriteriaTool extends Tool
             'id.integer' => 'The id field must be an integer.',
         ]);
 
-        $criteria = AcceptanceCriteria::findOrFail($validated['id']);
+        $criteria = AcceptanceCriteria::query()
+            ->whereKey((int) $validated['id'])
+            ->firstOrFail();
 
         $markAsIsMet($criteria);
 

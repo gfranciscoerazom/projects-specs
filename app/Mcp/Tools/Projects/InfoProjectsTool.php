@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mcp\Tools;
+namespace App\Mcp\Tools\Projects;
 
 use App\Models\Project;
 use Illuminate\Contracts\JsonSchema\JsonSchema;
@@ -28,7 +28,9 @@ class InfoProjectsTool extends Tool
             'id.integer' => 'The id field must be an integer.',
         ]);
 
-        $project = Project::findOrFail($validated['id']);
+        $project = Project::query()
+            ->whereKey((int) $validated['id'])
+            ->firstOrFail();
 
         return Response::structured([
             'id' => $project->id,

@@ -2,10 +2,10 @@
 
 namespace App\Mcp\Servers;
 
-use App\Mcp\Tools\InfoProjectsTool;
-use App\Mcp\Tools\ListPendingAcceptanceCriteriaTool;
-use App\Mcp\Tools\ListProjectsTool;
-use App\Mcp\Tools\MarkAsIsMetAcceptanceCriteriaTool;
+use App\Mcp\Tools\AcceptanceCriteria\ListPendingAcceptanceCriteriaTool;
+use App\Mcp\Tools\AcceptanceCriteria\MarkAsIsMetAcceptanceCriteriaTool;
+use App\Mcp\Tools\Projects\InfoProjectsTool;
+use App\Mcp\Tools\Projects\ListProjectsTool;
 use Laravel\Mcp\Server;
 use Laravel\Mcp\Server\Attributes\Instructions;
 use Laravel\Mcp\Server\Attributes\Name;

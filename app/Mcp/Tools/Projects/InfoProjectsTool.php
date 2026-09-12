@@ -28,9 +28,7 @@ class InfoProjectsTool extends Tool
             'id.integer' => 'The id field must be an integer.',
         ]);
 
-        $project = Project::query()
-            ->whereKey((int) $validated['id'])
-            ->firstOrFail();
+        $project = Project::findOrFail((int) $validated['id']);
 
         return Response::structured([
             'id' => $project->id,

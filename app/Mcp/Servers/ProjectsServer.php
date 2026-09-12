@@ -4,6 +4,17 @@ namespace App\Mcp\Servers;
 
 use App\Mcp\Tools\AcceptanceCriteria\ListPendingAcceptanceCriteriaTool;
 use App\Mcp\Tools\AcceptanceCriteria\MarkAsIsMetAcceptanceCriteriaTool;
+use App\Mcp\Tools\Feature\ChangeToCompletedFeatureTool;
+use App\Mcp\Tools\Feature\ChangeToFailedFeatureTool;
+use App\Mcp\Tools\Feature\ChangeToInProgressFeatureTool;
+use App\Mcp\Tools\Feature\ChangeToPendingFeatureTool;
+use App\Mcp\Tools\Feature\InfoFeatureTool;
+use App\Mcp\Tools\PlanTask\ChangeToCompletedPlanTaskTool;
+use App\Mcp\Tools\PlanTask\ChangeToFailedPlanTaskTool;
+use App\Mcp\Tools\PlanTask\ChangeToInProgressPlanTaskTool;
+use App\Mcp\Tools\PlanTask\ChangeToPendingPlanTaskTool;
+use App\Mcp\Tools\PlanTask\InfoPlanTaskTool;
+use App\Mcp\Tools\PlanTask\ListPendingPlanTasksTool;
 use App\Mcp\Tools\Projects\InfoProjectsTool;
 use App\Mcp\Tools\Projects\ListProjectsTool;
 use Laravel\Mcp\Server;
@@ -21,6 +32,17 @@ class ProjectsServer extends Server
         ListProjectsTool::class,
         ListPendingAcceptanceCriteriaTool::class,
         MarkAsIsMetAcceptanceCriteriaTool::class,
+        ChangeToCompletedFeatureTool::class,
+        ChangeToFailedFeatureTool::class,
+        ChangeToInProgressFeatureTool::class,
+        ChangeToPendingFeatureTool::class,
+        InfoFeatureTool::class,
+        ChangeToCompletedPlanTaskTool::class,
+        ChangeToFailedPlanTaskTool::class,
+        ChangeToInProgressPlanTaskTool::class,
+        ChangeToPendingPlanTaskTool::class,
+        InfoPlanTaskTool::class,
+        ListPendingPlanTasksTool::class,
     ];
 
     protected array $resources = [

@@ -10,9 +10,9 @@ class ChangeToFailedPlanTask
     /**
      * Invoke the class instance.
      */
-    public function __invoke(PlanTask $feature): void
+    public function __invoke(PlanTask $planTask): void
     {
-        $feature->updateOrFail([
+        $planTask->updateOrFail([
             'status' => PlanTaskStatus::FAILED,
         ]);
     }

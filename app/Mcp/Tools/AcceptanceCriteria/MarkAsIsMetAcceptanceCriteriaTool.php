@@ -27,9 +27,7 @@ class MarkAsIsMetAcceptanceCriteriaTool extends Tool
             'id.integer' => 'The id field must be an integer.',
         ]);
 
-        $criteria = AcceptanceCriteria::query()
-            ->whereKey((int) $validated['id'])
-            ->firstOrFail();
+        $criteria = AcceptanceCriteria::findOrFail((int) $validated['id']);
 
         $markAsIsMet($criteria);
 
